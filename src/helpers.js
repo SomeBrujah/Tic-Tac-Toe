@@ -1,3 +1,6 @@
+import Cell from "./Cell";
+import React from "react";
+
 const WIN_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,13 +26,13 @@ export function calculateWinerComb(resultArray) {
         for (let j = 0; j < WIN_COMBINATIONS[i].length; j++) {
             if (resultArray[WIN_COMBINATIONS[i][j]] === 'X') {
                 xNumber++;
-                if(xNumber === 3) {
+                if (xNumber === 3) {
                     winnerSymbol = 'X';
                     return winnerSymbol;
                 }
-            } else if(resultArray[WIN_COMBINATIONS[i][j]] === 'O') {
+            } else if (resultArray[WIN_COMBINATIONS[i][j]] === 'O') {
                 oNumber++;
-                if(oNumber === 3) {
+                if (oNumber === 3) {
                     winnerSymbol = 'O';
                     return winnerSymbol;
                 }
@@ -39,4 +42,24 @@ export function calculateWinerComb(resultArray) {
         }
     }
     return null;
+}
+
+export function generateGrid(cellsArr, onClickFunc, restartFunc, winner) {
+    const rows = [];
+    const cells = [];
+    
+    for(let i = 0; i < 9; i++) {
+        cells.push(<Cell key={i.toString()} value={cellsArr[i]} className="cell" onClick={() => { onClickFunc(i) }} />);
+    }
+    
+    for(let j = 0; j < 3; j++) {
+        const cellsCollection = [];
+        for(let k = 0; k < 3; k++) {
+            cellsCollection.push(cells.shift());
+        }
+        rows.push(<div key={j.toString(2)} className="row">{cellsCollection}</div>);
+    }
+    rows.push(<h1 className="gameResultText" key={'caseForWinnerValue'}>{winner}</h1>)
+    rows.push(<button className="restartButton" key={'keyButtonForRestart'} onClick={restartFunc}>Restart</button>)
+    return <div className="gameField">{rows}</div>;
 }

@@ -18,6 +18,9 @@ body {
     height: auto;
     padding: 10px;
     border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .row {
     display: flex;
@@ -35,8 +38,22 @@ body {
     }
 }
 
-.SomeClass2{
-    width: 50px;
-    height: 50px;
+.gameResultText{
+    font-family: system-ui;
+    margin: 10px 5px;
+}
+
+.restartButton {
+	margin: 15px;
+	width: 200px;
+	height: 50px;
+	font-family: revert;
+	font-size: 22px;
     background-color: gray;
+    color: white;
+    transition: all 0.3s;
+    &:hover{
+        background-color: white;
+        color: black;
+    }
 }
