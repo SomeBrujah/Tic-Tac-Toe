@@ -1,4 +1,4 @@
-import Cell from "./Cell";
+import Cell from "./components/Cell/Cell";
 import React from "react";
 
 const WIN_COMBINATIONS = [

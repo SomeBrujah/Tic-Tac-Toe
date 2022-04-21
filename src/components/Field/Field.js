@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import { calculateWinerComb, generateGrid } from "./helpers";
-import Cell from "./Cell";
+import { calculateWinerComb, generateGrid } from "../../helpers";
+import Cell from "../Cell/Cell";
 
 const Field = () => {
     console.log('Field is render.');
