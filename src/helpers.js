@@ -47,14 +47,14 @@ export function calculateWinerComb(resultArray) {
 export function generateGrid(cellsArr, onClickFunc, restartFunc, winner) {
     const rows = [];
     const cells = [];
-    
-    for(let i = 0; i < 9; i++) {
+
+    for (let i = 0; i < 9; i++) {
         cells.push(<Cell key={i.toString()} value={cellsArr[i]} className="cell" onClick={() => { onClickFunc(i) }} />);
     }
-    
-    for(let j = 0; j < 3; j++) {
+
+    for (let j = 0; j < 3; j++) {
         const cellsCollection = [];
-        for(let k = 0; k < 3; k++) {
+        for (let k = 0; k < 3; k++) {
             cellsCollection.push(cells.shift());
         }
         rows.push(<div key={j.toString(2)} className="row">{cellsCollection}</div>);
