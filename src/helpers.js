@@ -12,12 +12,6 @@ const WIN_COMBINATIONS = [
     [2, 4, 6]
 ]
 
-const testArr = [
-    'X', '0', 'X',
-    'O', 'O', 'X',
-    'X', 'X', 'X'
-]
-
 export function calculateWinerComb(resultArray) {
     let winnerSymbol = '';
     for (let i = 0; i < WIN_COMBINATIONS.length; i++) {

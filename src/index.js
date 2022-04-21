@@ -1,13 +1,21 @@
 import './style/style.scss';
+
 import React from "react";
-import ReactDom from "react-dom";
 import { createRoot } from "react-dom/client";
+import App from './components/App/App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { rootReducer } from './store/rootReducer';
+
 const container = document.getElementById('root');
 const root = createRoot(container);
-import App from './components/App/App';
+
+const store = createStore(rootReducer);
 
 root.render(
     <React.StrictMode>
-        <App className={'SomeClass'} />
+        <Provider store={store}>
+            <App className={'SomeClass'} />
+        </Provider>
     </React.StrictMode>
 );

@@ -1,35 +1,22 @@
-import { useState } from "react";
-import { calculateWinerComb, generateGrid } from "../../helpers";
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { generateGrid } from "../../helpers";
+import { restartGame, handleCellClick } from "../../store/actions";
 
 const Field = () => {
-    // Field have two variables to track their states 
-    const [cells, setCells] = useState(new Array(9).fill(null));
-    const [isX, setIsX] = useState(true);
-    //  And state for result
-    const [winner, setWinner] = useState(null);
 
-    const restartFunc = () => {
-        setCells(new Array(9).fill(null));
-        setIsX(true);
-        setWinner(null);
-    };
+    const dispatch = useDispatch();
+    const { cells, winner } = useSelector(state => state);
 
-    const handleCellClick = (i) => {
-        if (winner !== null || cells[i] !== null) {
-            return;
-        }
-        cells[i] = isX ? 'X' : 'O';
-        setCells(cells);
-        setIsX(!isX);
-        let result = calculateWinerComb(cells);
-        if (result === null && !cells.includes(null)) {
-            setWinner('Draw');
-        } else if (result !== null) {
-            setWinner("Winner is: " + result);
-        }
-    };
+    const restartFunc = useCallback(()=>{
+        dispatch(restartGame());
+    }, []);
+    
+    const handleClickCell = useCallback((i)=>{
+        dispatch(handleCellClick(i));
+    }, []);
 
-    return (generateGrid(cells, handleCellClick, restartFunc, winner))
+    return (generateGrid(cells, handleClickCell, restartFunc, winner))
 }
 
 export default Field;
