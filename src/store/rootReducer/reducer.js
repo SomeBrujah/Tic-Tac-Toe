@@ -1,4 +1,4 @@
-import { calculateWinerComb } from "../helpers";
+import { calculateWinerComb } from "../../helpers";
 import { HANDLE_CELL_CLICK, RESTART_GAME } from "./types";
 
 const defaultState = {
@@ -7,18 +7,18 @@ const defaultState = {
     winner: null
 }
 
-export const rootReducer = (state = defaultState, action) => {
-    switch (action.type) {
+const rootReducer = (state = defaultState, {type, payload}) => {
+    switch (type) {
         case HANDLE_CELL_CLICK:
             const newState = {
                 cells: state.cells,
                 isX: state.isX,
                 winner: state.winner
             }
-            if (newState.winner !== null || newState.cells[action.payload] !== null) {
+            if (newState.winner !== null || newState.cells[payload] !== null) {
                 return state;
             }
-            newState.cells[action.payload] = newState.isX ? 'X' : 'O';
+            newState.cells[payload] = newState.isX ? 'X' : 'O';
             newState.isX = !newState.isX;
             let result = calculateWinerComb(newState.cells);
             if (result === null && !newState.cells.includes(null)) {
@@ -45,3 +45,5 @@ export const rootReducer = (state = defaultState, action) => {
             return state;
     }
 }
+
+export default rootReducer;

@@ -1,22 +1,13 @@
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { generateGrid } from "../../helpers";
-import { restartGame, handleCellClick } from "../../store/actions";
 
-const Field = () => {
+const Field = ({ handleCellClick, restartGame, ourState }) => {
 
-    const dispatch = useDispatch();
-    const { cells, winner } = useSelector(state => state);
-
-    const restartFunc = useCallback(()=>{
-        dispatch(restartGame());
-    }, []);
-    
-    const handleClickCell = useCallback((i)=>{
-        dispatch(handleCellClick(i));
+    const handleClickCell = useCallback((i) => {
+        handleCellClick(i);
     }, []);
 
-    return (generateGrid(cells, handleClickCell, restartFunc, winner))
+    return (generateGrid(ourState.cells, handleClickCell, restartGame, ourState.winner))
 }
 
 export default Field;
