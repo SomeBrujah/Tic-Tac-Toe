@@ -7,7 +7,9 @@
     "start": "webpack-dev-server --open",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "watch": "webpack --mode development -w"
+    "watch": "webpack --mode development -w",
+    "server_koa": "node './server/server.js'",
+    "server_nodemon": "nodemon './server/server.js'"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +33,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
+    "koa": "^2.13.4",
+    "koa-ejs": "^4.3.0",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.1",
